@@ -1,0 +1,11 @@
+ext.isCiServer = Boolean.getBoolean("CI")
+
+buildCache {
+	local {
+		enabled = !isCiServer
+	}
+	remote(HttpBuildCache) {
+		url = 'http://boahey64.com:5471/cache/'
+		push = isCiServer
+	}
+}
